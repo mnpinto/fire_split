@@ -63,7 +63,7 @@ def split_fires(data, interval_days=8):
 
 def run_all(input_path, save_path, interval_days=8):
     if input_path.is_dir():
-        files = list(path.iterdir())
+        files = list(input_path.iterdir())
         files = [f for f in files if 'tif' in f.suffix]
     else:
         files = [input_path]

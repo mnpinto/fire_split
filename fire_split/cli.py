@@ -4,6 +4,7 @@ __all__ = ['fire_split_run']
 
 # Cell
 from fastscript import call_parse, Param
+from pathlib import Path
 from .core import *
 
 # Cell
