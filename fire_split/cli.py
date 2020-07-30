@@ -16,4 +16,4 @@ def fire_split_run(
 
     path = Path(input_path)
     out = Path(output_path)
-    run_all(path, out, interval_days=8)
+    run_all(path, out, interval_days=interval_days)
