@@ -8,4 +8,6 @@
 
 ## How to use
 
-`fire_split_run tif_path output_path --interval_days 16`
+```bash
+fire_split_run tif_path output_path --interval_days 16
+```

@@ -56,7 +56,7 @@ def split_fires(data, interval_days=8):
                 labels[I2] = l2[I2]
 
     labels2 = np.zeros_like(labels)
-    rand_labels = np.random.permutation(list(range(len(np.unique(labels)[1:]))))
+    rand_labels = np.random.permutation(list(range(1, len(np.unique(labels)[1:])+1)))
     for i, l in enumerate(np.unique(labels)[1:]):
         labels2[labels==l] = rand_labels[i]
     return labels2
