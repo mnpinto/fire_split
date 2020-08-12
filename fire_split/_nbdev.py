@@ -5,6 +5,7 @@ __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 index = {"read_data": "00_core.ipynb",
          "save_data": "00_core.ipynb",
          "split_fires": "00_core.ipynb",
+         "to_polygon": "00_core.ipynb",
          "run_all": "00_core.ipynb",
          "fire_split_run": "01_cli.ipynb"}
 
