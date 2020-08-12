@@ -44,6 +44,7 @@ def save_data(filename, raster, meta=None, crs=None, transform=None):
     else:
         meta['nodata'] = 0
         meta['dtype'] = 'uint32'
+    meta['compress'] = 'lzw'
     with rasterio.open(filename, 'w', **meta) as dst:
         if len(raster.shape) == 2:
             raster = raster[None]
@@ -131,7 +132,7 @@ def split_fires(data, interval_days=4, interval_pixels=4, min_size_pixels=1,
                        'tend': df.date.amax})
     return labels, df
 
-def to_polygon(data, crs, transform, base_df):
+def to_polygon(data, crs, transform, base_df, area_epsg=None):
     geoms = list({'properties': {'value': v}, 'geometry': s}
         for i, (s, v) in enumerate(rasterio.features.shapes(data.astype(np.uint16), transform=transform))
     )
@@ -145,8 +146,11 @@ def to_polygon(data, crs, transform, base_df):
             geoms.append(mpoly)
     df = gpd.GeoDataFrame({'label_id': list(range(1, int(df.value.max())+1)),
                            'geometry': geoms}, crs=crs)
-    df['area_ha'] = df.area*0.0001
     df = df.merge(base_df, how='left', on='label_id')
+    if area_epsg is None:
+        df['area_ha'] = df.area*0.0001
+    else:
+        df['area_ha'] = np.round((df.to_crs(epsg=area_epsg).area.values*0.0001), 2)
     return df
 
 def run_all(input_path, save_path, interval_days=4, interval_pixels=4,
