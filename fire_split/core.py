@@ -79,7 +79,10 @@ def split_fires(data, interval_days=4, interval_pixels=4, min_size_pixels=1,
 
     # Find shapes that need time separation
     df = pd.DataFrame({'date': unique_dates, 'label': unique_labels})
-    df_overlap = df.groupby('label').agg(lambda x : len(x[0]))
+    try:
+        df_overlap = df.groupby('label').agg(lambda x : len(x.values[0]))
+    except:
+        df_overlap = df.groupby('label').agg(lambda x : len(x[0]))
     overlap_index = df_overlap.loc[df_overlap.date>1].index
     #df = df.groupby('label').agg(lambda x : x.values.tolist())
     df = df.loc[df.label.isin(overlap_index)]
