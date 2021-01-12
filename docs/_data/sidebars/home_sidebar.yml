@@ -11,10 +11,10 @@ entries:
       url: /
     - output: web,pdf
       title: Fire Split
-      url: /core
+      url: core.html
     - output: web,pdf
       title: CLI
-      url: /cli
+      url: cli.html
     output: web
     title: fire_split
   output: web

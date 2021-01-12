@@ -1,7 +1,7 @@
 {
   "fire_split": {
     "Overview": "/",
-    "Fire Split": "/core",
-    "CLI": "/cli"
+    "Fire Split": "core.html",
+    "CLI": "cli.html"
   }
 }

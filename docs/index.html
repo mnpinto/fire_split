@@ -2,11 +2,13 @@
 
 title: Fire Split
 
+
 keywords: fastai
 sidebar: home_sidebar
 
 summary: "Split individual fire events from tif files"
 description: "Split individual fire events from tif files"
+nb_path: "index.ipynb"
 ---
 <!--
 
@@ -48,8 +50,28 @@ description: "Split individual fire events from tif files"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>Command line utility:</p>
 <div class="highlight"><pre><span></span>fire_split_run tif_path output_path --interval_days <span class="m">16</span>
 </pre></div>
+<p><code>tif_path</code> is the path for a tif file or directory with tif files. Each tif file should contain a layer with dates of burning in julian days.</p>
+<p><code>output_path</code> is the directory to save the outputs.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use split_fires function:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fire_split.core</span> <span class="kn">import</span> <span class="n">split_fires</span>
+<span class="n">labels</span><span class="p">,</span> <span class="n">df</span> <span class="o">=</span> <span class="n">split_fires</span><span class="p">(</span><span class="n">date</span><span class="p">)</span> <span class="c1"># date is a 2d numpy array with the dates of burning in julian days</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>More information in the documentation page: <a href="https://mnpinto.github.io/fire_split">https://mnpinto.github.io/fire_split</a></p>
 
 </div>
 </div>
