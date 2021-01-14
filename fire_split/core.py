@@ -99,13 +99,13 @@ def split_fires(data, interval_days=4, interval_pixels=4, min_size_pixels=1,
                 l1[I1==0] = 0
                 l1[l1>0] += labels.max()
                 labels[I1] = l1[I1]
-            if i == len(df_row.splits):
-                I1 = (labels==df_row.label) & (data>split1)
-                I1_conv = ndimage.convolve(I1, kernel, mode='constant', cval=0.0)>0
-                l1, _ = ndimage.label(I1_conv)
-                l1[I1==0] = 0
-                l1[l1>0] += labels.max()
-                labels[I1] = l1[I1]
+                if i == np.where(df_row.splits)[0][-1]:
+                    I1 = (labels==df_row.label) & (data>split1)
+                    I1_conv = ndimage.convolve(I1, kernel, mode='constant', cval=0.0)>0
+                    l1, _ = ndimage.label(I1_conv)
+                    l1[I1==0] = 0
+                    l1[l1>0] += labels.max()
+                    labels[I1] = l1[I1]
 
     # Relabel
     _, labels = np.unique(labels,return_inverse=1)
