@@ -51,7 +51,7 @@ def save_data(filename, raster, meta=None, crs=None, transform=None):
         dst.write(raster.astype('uint32'))
 
 def split_fires(data, interval_days=4, interval_pixels=4, min_size_pixels=1,
-                min_daily_size=10):
+                min_daily_size=1):
     data = data.astype(np.uint32)
     kernel = np.ones((interval_pixels,interval_pixels))
     data_conv = ndimage.convolve(data>0, kernel, mode='constant', cval=0.0)>0
